@@ -1,0 +1,12 @@
+*.pyc
+__pycache__/
+venv/
+.venv/
+.py
+config.ini
+*.log
+*.env
+*.ico
+*.png
+*.json
+tempCodeRunnerFile.py
