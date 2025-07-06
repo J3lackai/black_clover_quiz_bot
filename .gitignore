@@ -5,8 +5,11 @@ venv/
 .py
 config.ini
 *.log
-*.env
+.env
 *.ico
 *.png
 *.json
 tempCodeRunnerFile.py
+.vscode/
+.DS_Store/
+.ruff_cache/
