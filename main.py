@@ -2,6 +2,7 @@ from config.config import Config, load_config
 import asyncio
 from aiogram import Bot, Dispatcher
 from handlers import user
+from loguru import logger
 
 
 async def main() -> None:
