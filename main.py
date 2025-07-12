@@ -1,7 +1,7 @@
 from config.config import Config, load_config
 import asyncio
 from aiogram import Bot, Dispatcher
-from handlers import user
+from handlers import user, quiz, errors
 from loguru import logger
 
 
@@ -10,6 +10,8 @@ async def main() -> None:
     bot = Bot(token=config.bot.token)
     dp = Dispatcher()
     dp.include_router(user.router)
+    dp.include_router(quiz.router)
+    dp.include_router(errors.router)
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
 
