@@ -1,11 +1,11 @@
 from aiogram import Router, F
-from keyboards import main_menu
+from keyboards import get_main_menu
 from aiogram.types import Message
 from aiogram.filters import Command, CommandStart, StateFilter, or_f
-from lexicon import LEXICON_RU
-
+from loguru import logger
 from aiogram.fsm.state import default_state
-
+from aiogram.fsm.context import FSMContext
+from lexicon import LEXICON_EN, LEXICON_RU
 
 # Инициализируем роутер уровня модуля
 router = Router()
@@ -13,21 +13,43 @@ router = Router()
 
 # Этот хэндлер срабатывает на команду /start
 @router.message(CommandStart(), StateFilter(default_state))
-async def process_start_command(message: Message):
-    await message.answer(text=LEXICON_RU["/start"], reply_markup=main_menu)
+async def process_start_command(message: Message, state: FSMContext):
+    logger.debug("Пользователь отправил команду /start")
+    data = await state.get_data()
+    lang = data.get("lexicon", "RU")
+    lexicon = LEXICON_RU if lang == "RU" else LEXICON_EN
+    await message.answer(
+        text=lexicon["/start"],
+        reply_markup=await get_main_menu(state=state, lexicon=lexicon),
+    )
 
 
 @router.message(
-    or_f(Command("donate"), F.text.casefold() == "Поддержать автора"),
+    or_f(
+        Command("donate"),
+        F.text.casefold() == "Поддержать автора",
+        F.text.casefold() == "Support the author",
+    ),
     StateFilter(default_state),
 )
-async def donate_handler(message: Message):
-    await message.answer(LEXICON_RU["/donate"])
+async def donate_handler(message: Message, state: FSMContext):
+    logger.debug("Пользователь отправил команду /donate")
+    data = await state.get_data()
+    lang = data.get("lexicon", "RU")
+    lexicon = LEXICON_RU if lang == "RU" else LEXICON_EN
+    await message.answer(lexicon["/donate"])
 
 
 # Этот хэндлер срабатывает на команду /help
 @router.message(
-    or_f(Command("help"), F.text.casefold() == "Помощь"), StateFilter(default_state)
+    or_f(Command("help"), F.text.casefold() == "Помощь", F.text.casefold() == "Help"),
+    StateFilter(default_state),
 )
-async def help_handler(message: Message):
-    await message.answer(LEXICON_RU["/help"], reply_markup=main_menu)
+async def help_handler(message: Message, state: FSMContext):
+    logger.debug("Пользователь отправил команду /help")
+    data = await state.get_data()
+    lang = data.get("lexicon", "RU")
+    lexicon = LEXICON_RU if lang == "RU" else LEXICON_EN
+    await message.answer(
+        lexicon["/help"], reply_markup=await get_main_menu(state=state, lexicon=lexicon)
+    )

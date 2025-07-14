@@ -1,4 +1,4 @@
-from .keyboard_utils import get_answers_keyboard
-from .set_menu import main_menu
+from .keyboard_utils import get_answers_keyboard, select_language
+from .set_menu import get_main_menu
 
-__all__ = ["get_answers_keyboard", "main_menu", "state_map"]
+__all__ = ["get_answers_keyboard", "get_main_menu", "state_map", "select_language"]
