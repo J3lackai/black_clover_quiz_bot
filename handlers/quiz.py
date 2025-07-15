@@ -55,13 +55,16 @@ async def check_answer(message: Message, state: FSMContext):
 async def process_question(message: Message, state: FSMContext):
     logger.debug("Даём очередную цитату пользователю...")
     data = await state.get_data()
-    lexicon = LEXICON_RU if data.get("lexicon", "RU") == "RU" else LEXICON_EN
+    lang = data.get("lexicon", "RU")
+    lexicon = LEXICON_RU if lang == "RU" else LEXICON_EN
     current_state = await state.get_state()
+    if current_state is None:
+        return
     state_name = current_state.split(":")[1]
     question_num = int(state_name[1:])
     question_key = f"q{question_num}"
     question_text = lexicon.get(question_key)
-    keyboard = get_answers_keyboard(question_num)
+    keyboard = get_answers_keyboard(question_num, lang)
 
     await message.answer(text=question_text, reply_markup=keyboard)
 
@@ -85,5 +88,5 @@ async def final_quiz(message: Message, state: FSMContext):
         )
 
     await process_print_result()
-    await donate_handler(message)
+    await donate_handler(message, state)
     await state.clear()

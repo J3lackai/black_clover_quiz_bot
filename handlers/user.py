@@ -27,8 +27,8 @@ async def process_start_command(message: Message, state: FSMContext):
 @router.message(
     or_f(
         Command("donate"),
-        F.text.casefold() == "Поддержать автора",
-        F.text.casefold() == "Support the author",
+        F.text.lower() == "поддержать автора",
+        F.text.lower() == "support the author",
     ),
     StateFilter(default_state),
 )
@@ -42,7 +42,11 @@ async def donate_handler(message: Message, state: FSMContext):
 
 # Этот хэндлер срабатывает на команду /help
 @router.message(
-    or_f(Command("help"), F.text.casefold() == "Помощь", F.text.casefold() == "Help"),
+    or_f(
+        Command("help"),
+        F.text.lower() == "помощь",
+        F.text.lower() == "help",
+    ),
     StateFilter(default_state),
 )
 async def help_handler(message: Message, state: FSMContext):

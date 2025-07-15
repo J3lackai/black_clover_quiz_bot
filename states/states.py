@@ -17,6 +17,7 @@ class FSMFillForm(StatesGroup):
     q9 = State()
     q10 = State()
     f = State()
+    settings = State()
 
 
 state_map = {

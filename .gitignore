@@ -13,3 +13,6 @@ tempCodeRunnerFile.py
 .vscode/
 .DS_Store/
 .ruff_cache/
+.redis_data/
+.postgres_data/
+.pgadmin_data/

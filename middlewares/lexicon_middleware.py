@@ -3,40 +3,36 @@ from aiogram.types import Message
 from typing import Callable, Dict, Any, Awaitable
 from lexicon import LEXICON_RU, LEXICON_EN
 from keyboards import select_language
-from aiogram.types import TelegramObject
+from redis.asyncio import Redis
+from aiogram.fsm.context import FSMContext
+from states.states import FSMFillForm as f
 
 
 class LexiconMiddleware(BaseMiddleware):
+    def __init__(self, redis: Redis):
+        self.redis = redis
+
     async def __call__(
         self,
         handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
-        event: TelegramObject,
+        event: Message,
         data: Dict[str, Any],
     ) -> Any:
-        state = data.get("state")
-
-        if not state:
-            print("here")
-            data["lexicon"] = LEXICON_RU
-            result = await handler(event, data)
-            return result
-
-        user_data = await state.get_data()
-        lexicon = user_data.get("lexicon")
-
-        # Если язык ещё не выбран
-        if lexicon not in ("RU", "EN"):
+        user_id = event.from_user.id
+        lang = await self.redis.get(f"user:{user_id}:lang")
+        lang = lang.decode() if lang else None
+        state: FSMContext = data.get("state")
+        cur_state = await state.get_state()
+        if lang not in ("RU", "EN") or cur_state == f.settings:
             if isinstance(event, Message):
+                # язык ещё не выбран — отправляем клавиатуру выбора и не продолжаем цепочку
+                await state.set_state(cur_state)
                 await event.answer(
                     "Choose your language / Выберите язык:",
                     reply_markup=select_language(),
                 )
-            # Здесь вызываем хендлер выбора языка, чтобы всё дошло до его выбора в process_language_choice
-            result = await handler(event, data)
-            return result
+            return await handler(event, data)
 
-        # Устанавливаем словарь языка
-        lexicon = LEXICON_RU if lexicon == "RU" else LEXICON_EN
-        data["lexicon"] = lexicon
-        result = await handler(event, data)
-        return result
+        # подставляем словарь в зависимости от языка
+        data["lexicon"] = LEXICON_RU if lang == "RU" else LEXICON_EN
+        return await handler(event, data)
