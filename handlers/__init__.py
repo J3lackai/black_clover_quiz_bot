@@ -1,5 +1,5 @@
 from .errors import process_unvalid_commands
-from .language import process_language_choice
+from .language import process_language_choice, language_handler
 from .user import donate_handler, process_start_command, help_handler
 from .quiz import (
     restart_quiz,
@@ -18,4 +18,5 @@ __all__ = [
     "check_answer",
     "process_question",
     "final_quiz",
+    "language_handler",
 ]

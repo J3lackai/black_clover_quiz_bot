@@ -3,13 +3,14 @@ LEXICON_EN: dict[str, str] = {
     "start_quiz": "The quiz begins...",
     "you_right": "✅ Correct! Keep it up.",
     "oh_no": "That's incorrect. The correct answer is: {correct_answer}",
-    "/start": "Hello, dear user. I'm Gordon. Want to play a game?",
-    "/help": "My name is Gordon. I have a habit of writing down all the phrases my friends say.\n"
+    "start": "Hello, dear user. I'm Gordon. Want to play a game?",
+    "restart": "Do you want to play again?",
+    "help": "My name is Gordon. I have a habit of writing down all the phrases my friends say.\n"
     + "I decided to try creating a game based on these quotes.\n"
     + "It's very simple: just click the button with the name of the friend who said the quote.\n"
     + "Press the 'Start the quiz again' button to play my game",
-    "/donate": "If you want to support the creator of the quiz:\n"
-    + "→ Donate on Boosty: https://boosty.to/blackcloverquiz \n"
+    "donate": "If you want to support the creator:\n"
+    + "Donate on Boosty: https://boosty.to/blackcloverquiz \n"
     + "That would make me very happy ☕",
     "unvalid": "I didn’t hear you, speak up."
     + " (If you're having issues, type /help in chat)",
@@ -158,10 +159,10 @@ LEXICON_EN: dict[str, str] = {
     "final_brilliant": "You showed brilliant knowledge of my friends! 🤩 \n",
     "final_well": "You achieved a great result worthy of respect! 😉 \n",
     "final_not_bad": "Maybe you're just getting to know my friends! 🤔 \n",
-    "final_stmt": "% of your answers were correct!\n"
-    + "I hope you enjoyed my quiz! 🤗",
+    "final_stmt": "% of your answers were correct!\n",
     "menu_start": "Start quiz again",
     "menu_help": "Help",
     "menu_donate": "Support the author",
+    "menu_settings": "Select a language",
     "menu_choose_action": "Choose an action",
 }
