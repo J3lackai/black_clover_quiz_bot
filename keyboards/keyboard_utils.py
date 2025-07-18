@@ -14,13 +14,13 @@ def get_answers_keyboard(num_of_q: int, lexicon: dict) -> ReplyKeyboardMarkup:
     right_ch = lexicon[f"r{num_of_q}"]
     set_chs = lexicon["characters"]
     set_chs.discard(right_ch)
-    buttons = list()
-    buttons.append(KeyboardButton(text=right_ch))  # Кнопка с правильным персонажем
+    buttons = set(frozenset)
+    buttons.add(KeyboardButton(text=right_ch))  # Кнопка с правильным персонажем
     for ch in set_chs:
         if len(buttons) == 10:
             break
         # Кнопки с рандомными персонажами
-        buttons.append(KeyboardButton(text=ch))
+        buttons.add(KeyboardButton(text=ch))
     shuffle(
         buttons
     )  # Перемешали чтобы правильный персонаж был рандомной кнопкой, а не первой
