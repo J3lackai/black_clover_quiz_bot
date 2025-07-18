@@ -1,7 +1,11 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
-def get_main_menu(lexicon: dict[str:str]):
+def get_main_menu(lexicon: dict[str:str]) -> ReplyKeyboardMarkup:
+    """
+    Возвращает объект клавиатуры для меню
+    :param lexicon: LEXICON_RU | LEXICON_EN
+    """
     menu_buttons = (
         lexicon["menu_start"],
         lexicon["menu_help"],

@@ -10,5 +10,6 @@ router = Router()
 async def process_unvalid_commands(
     message: Message, state: FSMContext, lexicon: dict[str:str]
 ):
+    """Хендлер для обработки всех остальных апдейтов"""
     await message.answer(text=lexicon["unvalid"])
-    await state.clear()
+    await state.clear()  # Сбрасываем, чтобы предотвратить застревания в состояниях

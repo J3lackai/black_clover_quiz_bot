@@ -1,3 +1,3 @@
-from .lexicon_middleware import LexiconMiddleware
+from .i18n import LexiconMiddleware
 
 __all__ = ["LexiconMiddleware"]

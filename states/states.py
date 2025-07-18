@@ -1,11 +1,9 @@
-# from aiogram import Bot, Dispatcher, F
-# from aiogram.filters import Command, CommandStart, StateFilter
-# from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
-from aiogram.fsm.storage.memory import MemoryStorage
 
 
 class FSMFillForm(StatesGroup):
+    """Множество состояний"""
+
     q1 = State()
     q2 = State()
     q3 = State()
@@ -21,6 +19,7 @@ class FSMFillForm(StatesGroup):
 
 
 state_map = {
+    # Переходы между состояниями
     1: (FSMFillForm.q1, FSMFillForm.q2),
     2: (FSMFillForm.q2, FSMFillForm.q3),
     3: (FSMFillForm.q3, FSMFillForm.q4),
@@ -32,4 +31,3 @@ state_map = {
     9: (FSMFillForm.q9, FSMFillForm.q10),
     10: (FSMFillForm.q10, FSMFillForm.f),
 }
-storage = MemoryStorage()
