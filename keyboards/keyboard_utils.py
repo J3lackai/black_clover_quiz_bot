@@ -7,12 +7,11 @@ def get_answers_keyboard(num_of_q: int, lexicon: dict) -> ReplyKeyboardMarkup:
     """
     Возвращает клавиатуру с вариантами ответов для вопроса num_of_q
     :param num_of_q: номер вопроса
-    :param lang: язык ('RU' или 'EN')
+    :param lexicon: LEXICON_RU | LEXICON_EN
     :return: ReplyKeyboardMarkup
     """
     kb_builder = ReplyKeyboardBuilder()
 
-    # Проверка наличия ключа
     answers_key = f"a{num_of_q}"
     if answers_key not in lexicon:
         logger.error(f"Отсутствующие ответы на вопрос {num_of_q} в LEXICON_{lexicon}")
