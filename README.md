@@ -1,5 +1,7 @@
 # Black Clover Quiz Bot
 
+[Русская версия Readme.md](README.ru.md)  
+
 ## Description
 
 Quotes from characters of "Black Clover", where you need to guess which character said the quote.
