@@ -1,35 +1,35 @@
-# Бот-викторина по Чёрному клеверу
+# Black Clover Quiz Bot
 
-## Описание
+## Description
 
-Цитаты персонажей из "Чёрного клевера", где нужно угадать какой именно персонаж говорил цитату. 
-Доступно на данный момент 10 цитат. 
+Quotes from characters of "Black Clover", where you need to guess which character said the quote.
+Currently, 10 quotes are available.
 
-## Как сыграть?
+## How to Play?
 
-Бот работает на удалённом сервере. [Попробуйте сыграть с ним уже сейчас! ](https://t.me/blackclover_quiz_bot)
+The bot runs on a remote server. [Try playing with it now!](https://t.me/blackclover_quiz_bot)
 
-## Ключевые особенности
+## Key Features
 
-*   **Мультиязычность:** Поддержка нескольких языков (русский и английский) с возможностью переключения "на лету".
-*   **Redis:** Используется Redis для хранения данных пользователей (язык, количество прохождений), обеспечивая быстрое и эффективное управление состоянием.
-*   **Конечный автомат (FSM):** Реализована логика FSM для управления процессом квиза, обеспечивая структурированный и предсказуемый пользовательский опыт.
-*   **Рандомизация** Варианты персонажей для каждой цитаты рандомизированы, также рандомизировано нахождения кнопки с правильным персонажем (тот чья цитата).
-*   **Продвинутое логирование:** Использование Loguru для детального отслеживания работы бота и оперативного выявления ошибок.
-*   **Чистая архитектура:** Проект разделен на модули для удобства разработки, тестирования и масштабирования.
+*   **Multilingual support:** Supports multiple languages (Russian and English) with the ability to switch "on the fly".
+*   **Redis:** Uses Redis to store user data (language, number of completions), ensuring fast and efficient state management.
+*   **Finite State Machine (FSM):** Implements FSM logic to manage the quiz process, providing a structured and predictable user experience.
+*   **Randomization:** Character options for each quote are randomized, as well as the position of the correct character button (the one whose quote it is).
+*   **Advanced logging:** Uses Loguru for detailed tracking of the bot’s operation and quick error detection.
+*   **Clean architecture:** The project is divided into modules for easier development, testing, and scaling.
 
-    *   `config/`: Конфигурация приложения.
-    *   `handlers/`: Обработчики событий Telegram.
-    *   `keyboards/`: Клавиатуры бота.
-    *   `lexicon/`: Текстовый контент
-    *   `middlewares/`: Промежуточное ПО для обработки запросов.
-    *   `states/`: Определение состояний FSM.
-    *   `utils/`: Вспомогательные функции.
-    *   `main.py`:Точка входа
-    *   `env.example`:Пример как заполнять `.env`
+    *   `config/`: Application configuration.
+    *   `handlers/`: Telegram event handlers.
+    *   `keyboards/`: Bot keyboards.
+    *   `lexicon/`: Text content
+    *   `middlewares/`: Middleware for request processing.
+    *   `states/`: FSM state definitions.
+    *   `utils/`: Utility functions.
+    *   `main.py`: Entry point
+    *   `env.example`: Example of how to fill `.env`
 
 
-## Стек технологий
+## Technology Stack
 
 *   Python 3.13
 *   Aiogram 3.20
