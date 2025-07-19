@@ -15,7 +15,7 @@ async def main() -> None:
     setup_logger(config.bot.log)
     logger.info("🚀 Бот запускается...")
     bot = Bot(token=config.bot.token)
-    redis = Redis(host="localhost", port=6379)
+    redis = Redis(host="localhost")
 
     storage = RedisStorage(redis=redis)
     dp = Dispatcher(
