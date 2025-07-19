@@ -11,7 +11,7 @@ from redis.asyncio import Redis
 router = Router()
 
 
-@router.message(or_f(F.text == "Начать квиз сначала", F.text == "Start quiz again"))
+@router.message(or_f(F.text == "Начать квиз сначала", F.text == "Start Quiz Again"))
 async def restart_quiz_cmd(
     message: Message, state: FSMContext, redis: Redis, lexicon: dict[str:str]
 ):

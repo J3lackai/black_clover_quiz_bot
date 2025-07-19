@@ -32,7 +32,7 @@ async def start_cmd(message: Message, redis: Redis, lexicon: dict[str:str]):
     or_f(
         Command("donate"),
         F.text == "Поддержать автора",
-        F.text == "Support the author",
+        F.text == "Support the Author",
     ),
     StateFilter(default_state),
 )
@@ -58,7 +58,7 @@ async def help_cmd(message: Message, lexicon: dict[str:str]):
 
 
 @router.message(
-    or_f(F.text == "Выбрать язык", F.text == "Select a language"),
+    or_f(F.text == "Выбрать язык", F.text == "Choose Language"),
     StateFilter(default_state),
 )
 async def setup_lang_cmd(message: Message):
