@@ -14,7 +14,7 @@ def get_answers_keyboard(num_of_q: int, lexicon: dict) -> ReplyKeyboardMarkup:
     right_ch = lexicon[f"r{num_of_q}"]
     set_chs = lexicon["characters"]
     set_chs.discard(right_ch)
-    buttons = set(frozenset)
+    buttons = set()
     buttons.add(KeyboardButton(text=right_ch))  # Кнопка с правильным персонажем
     for ch in set_chs:
         if len(buttons) == 10:
