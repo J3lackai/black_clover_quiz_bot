@@ -1,6 +1,6 @@
 # Black Clover Quiz Bot
 
-[Русская версия Readme.md](README.ru.md)  
+[Русская версия Readme (Описания)](README.ru.md)  
 
 ## Description
 
