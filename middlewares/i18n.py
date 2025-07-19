@@ -28,7 +28,7 @@ class LexiconMiddleware(BaseMiddleware):
                     "Choose your language / Выберите язык:",
                     reply_markup=select_language(),
                 )
-            return
+            return await handler(event, data)
 
         else:
             # Заносим в словарь data словарь с языком, который выбрал пользователь и нативно даём всем хендлерам как аргумент lexicon
