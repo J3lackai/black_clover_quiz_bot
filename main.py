@@ -7,7 +7,7 @@ from loguru import logger
 from aiogram.fsm.storage.redis import RedisStorage
 from redis.asyncio import Redis
 from aiogram.fsm.strategy import FSMStrategy
-from middlewares import LexiconMiddleware
+from middlewares import LexiconMiddleware, ThrottlingMiddleware
 
 
 async def main() -> None:
@@ -23,6 +23,7 @@ async def main() -> None:
         fsm_strategy=FSMStrategy.USER_IN_CHAT,
     )
     dp["redis"] = redis
+    dp.message.outer_middleware(ThrottlingMiddleware(redis=redis))
     dp.message.outer_middleware(LexiconMiddleware(redis=redis))
     dp.include_router(user.router)
     dp.include_router(quiz.router)
