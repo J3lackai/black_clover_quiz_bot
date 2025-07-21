@@ -17,6 +17,7 @@ The bot runs on a remote server. [Try playing with it now!](https://t.me/blackcl
 *   **Redis:** Uses Redis to store user data (language, number of completions), ensuring fast and efficient state management.
 *   **Finite State Machine (FSM):** Implements FSM logic to manage the quiz process, providing a structured and predictable user experience.
 *   **Randomization:** Character options for each quote are randomized, as well as the position of the correct character button (the one whose quote it is).
+*   **Spam protection:** Implemented anti-spam protection by the user(s) in the form of throttling middleware.
 *   **Advanced logging:** Uses Loguru for detailed tracking of the bot’s operation and quick error detection.
 *   **Clean architecture:** The project is divided into modules for easier development, testing, and scaling.
 
