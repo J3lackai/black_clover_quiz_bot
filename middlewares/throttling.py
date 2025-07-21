@@ -49,12 +49,11 @@ class ThrottlingMiddleware(BaseMiddleware):
             self.last_time[user_id] = current_time
         if 0 < elapsed < rate_limit:
             delay = rate_limit - elapsed
+            lexicon = data["lexicon"]
             await self.redis.set(f"user:{user.id}:spam", 1)
             await asyncio.sleep(
                 delay
             )  # Необходимая задержка, не перегружаем сервера Телеграма.
-            return await event.answer(
-                "Подождите 10 секунд перед отправкой следующего сообщения."
-            )
+            return await event.answer(lexicon["throttling"])
 
         return await handler(event, data)

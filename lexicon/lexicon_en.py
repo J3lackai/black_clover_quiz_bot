@@ -88,4 +88,5 @@ LEXICON_EN: dict[str, str] = {
     "menu_donate": "Support the Author",
     "menu_settings": "Choose Language",
     "menu_choose_action": "Choose an action",
+    "throttling": "Wait 10 seconds before sending the next message.",
 }

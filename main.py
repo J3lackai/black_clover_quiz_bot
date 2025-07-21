@@ -23,8 +23,8 @@ async def main() -> None:
         fsm_strategy=FSMStrategy.USER_IN_CHAT,
     )
     dp["redis"] = redis
-    dp.message.outer_middleware(ThrottlingMiddleware(redis=redis))
     dp.message.outer_middleware(LexiconMiddleware(redis=redis))
+    dp.message.outer_middleware(ThrottlingMiddleware(redis=redis))
     dp.include_router(user.router)
     dp.include_router(quiz.router)
     dp.include_router(errors.router)

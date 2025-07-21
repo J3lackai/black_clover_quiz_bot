@@ -88,4 +88,5 @@ LEXICON_RU: dict[str, str] = {
     "menu_donate": "Поддержать автора",
     "menu_settings": "Выбрать язык",
     "menu_choose_action": "Выберите действие",
+    "throttling": "Подождите 10 секунд перед отправкой следующего сообщения.",
 }
