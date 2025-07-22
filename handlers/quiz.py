@@ -24,7 +24,7 @@ async def restart_quiz_cmd(
     await process_question_quiz(message, state, redis, lexicon)
 
 
-@router.message(StateFilter(*[s[0] for s in state_map.values()]))
+@router.message(StateFilter(*[s[0] for s in state_map.values()]), F.text)
 async def check_answer_quiz(
     message: Message, state: FSMContext, redis: Redis, lexicon: dict[str:str]
 ):

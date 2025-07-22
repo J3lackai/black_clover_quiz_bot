@@ -35,7 +35,7 @@ def load_config(path: str | None = None) -> Config:
         bot=TgBot(
             token=os.getenv("BOT_TOKEN", ""),
             log=os.getenv("LOG_LEVEL", "INFO"),
-            rate_lim=os.getenv("rate_lim", 1),
+            rate_lim=os.getenv("RATE_LIMIT", 1),
         )
         # db=DatabaseConfig(
         #     name=os.getenv("DB_NAME", ""),
